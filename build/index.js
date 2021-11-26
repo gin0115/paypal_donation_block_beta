@@ -68,12 +68,8 @@ function Edit(props) {
       buttonImageID: media.id,
       buttonImage: media.url
     });
-  };
+  }; // Return the rendered element
 
-  const blockStyle = {
-    backgroundImage: attributes.buttonImage != '' ? 'url("' + attributes.buttonImage + '")' : 'none'
-  };
-  console.log(paypal_donations_block_settings); // Return the rendered element
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
     icon: "heart",

@@ -43,10 +43,6 @@ export default function Edit(props) {
 		});
 	}
 
-	const blockStyle = {
-		backgroundImage: attributes.buttonImage != '' ? 'url("' + attributes.buttonImage + '")' : 'none'
-	};
-console.log(paypal_donations_block_settings);
 	// Return the rendered element
 	return (
 		<div {...useBlockProps()}>
