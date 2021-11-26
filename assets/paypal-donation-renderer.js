@@ -4,13 +4,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // Attempt to get the first donation block rendered.
-    let paypalData = document.getElementsByClassName('render_paypal_donation_block');
+    let paypalData = document.getElementById('render_paypal_donation_block');
     if (paypalData.length === 0) {
         return;
     }
 
     // Attempt to get the data values from the paypal wrapper.
-    let paypalDataSet = paypalData[0].dataset;
+    let paypalDataSet = paypalData.dataset;
     if (paypalDataSet.length === 0) {
         return;
     }

@@ -15,7 +15,7 @@
 ?>
 <div id="paypal-donate-button-container"></div>
 <div 
-	class="render_paypal_donation_block" 
+	id="render_paypal_donation_block" 
 	data-hosted_button_id="<?php echo $donation_button_id; ?>"
 	data-business="<?php echo $donation_account; ?>"
 	data-button_src="<?php echo $button_image_url; ?>"
