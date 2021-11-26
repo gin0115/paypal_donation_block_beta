@@ -38,7 +38,7 @@ function parseButtonArgs(paypalDataSet) {
         ...(paypalDataSet.hosted_button_id !== '' && { hosted_button_id: paypalDataSet.hosted_button_id }),
         image: {
             src: paypalDataSet.button_src,
-            title: paypalDataSet.button_label,
+            title: paypalDataSet.button_title,
             alt: paypalDataSet.button_alt,
         },
         onComplete: composerOnCompleteCallBack(paypalDataSet)

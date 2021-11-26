@@ -46,7 +46,7 @@ export default function Edit(props) {
 	const blockStyle = {
 		backgroundImage: attributes.buttonImage != '' ? 'url("' + attributes.buttonImage + '")' : 'none'
 	};
-
+console.log(paypal_donations_block_settings);
 	// Return the rendered element
 	return (
 		<div {...useBlockProps()}>
@@ -78,10 +78,10 @@ export default function Edit(props) {
 					onChange={(val) => setAttributes({ buttonAlt: val })}
 				/>
 				<TextControl
-					label={paypal_donations_block_settings.i18n.buttonLabelLabel}
+					label={paypal_donations_block_settings.i18n.buttonTitleLabel}
 					className="paypal-donation-button-alt"
-					value={attributes.buttonLabel}
-					onChange={(val) => setAttributes({ buttonLabel: val })}
+					value={attributes.buttonTitle}
+					onChange={(val) => setAttributes({ buttonTitle: val })}
 				/>
 
 				<Fragment>
@@ -94,8 +94,7 @@ export default function Edit(props) {
 								render={({ open }) => (
 									<Fragment>
 										<div>
-											<img src={attributes.buttonImage} alt={attributes.buttonAlt} />
-											<p>{attributes.buttonLabel}</p>
+											<img src={attributes.buttonImage ?? paypal_donations_block_settings.defaultButtonUrl} alt={attributes.buttonAlt} title={attributes.buttonTitle}/>
 										</div>
 										<Button className='paypal-donation-button-image__toggle' onClick={open}>
 											Choose an image

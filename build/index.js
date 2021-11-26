@@ -72,7 +72,8 @@ function Edit(props) {
 
   const blockStyle = {
     backgroundImage: attributes.buttonImage != '' ? 'url("' + attributes.buttonImage + '")' : 'none'
-  }; // Return the rendered element
+  };
+  console.log(paypal_donations_block_settings); // Return the rendered element
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Placeholder, {
     icon: "heart",
@@ -102,11 +103,11 @@ function Edit(props) {
       buttonAlt: val
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-    label: paypal_donations_block_settings.i18n.buttonLabelLabel,
+    label: paypal_donations_block_settings.i18n.buttonTitleLabel,
     className: "paypal-donation-button-alt",
-    value: attributes.buttonLabel,
+    value: attributes.buttonTitle,
     onChange: val => setAttributes({
-      buttonLabel: val
+      buttonTitle: val
     })
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "paypal-donation-button-image"
@@ -115,13 +116,16 @@ function Edit(props) {
     value: attributes.buttonImageID,
     allowedTypes: ['image'],
     render: _ref => {
+      var _attributes$buttonIma;
+
       let {
         open
       } = _ref;
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-        src: attributes.buttonImage,
-        alt: attributes.buttonAlt
-      }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, attributes.buttonLabel)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        src: (_attributes$buttonIma = attributes.buttonImage) !== null && _attributes$buttonIma !== void 0 ? _attributes$buttonIma : paypal_donations_block_settings.defaultButtonUrl,
+        alt: attributes.buttonAlt,
+        title: attributes.buttonTitle
+      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
         className: "paypal-donation-button-image__toggle",
         onClick: open
       }, "Choose an image"));

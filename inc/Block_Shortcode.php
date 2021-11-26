@@ -47,7 +47,7 @@ class Block_Shortcode implements Bootable {
 			'donation_button_id' => 'donationButtonID',
 			'donation_account'   => 'donationAccount',
 			'button_image_url'   => 'buttonImage',
-			'button_label'       => 'buttonLabel',
+			'button_title'       => 'buttonTitle',
 			'button_alt'         => 'buttonAlt',
 		);
 

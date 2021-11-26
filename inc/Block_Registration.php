@@ -50,8 +50,8 @@ class Block_Registration implements Bootable {
 				// Paypal Button Values
 				'buttonAltLabel'        => esc_html__( 'Please enter the alt tag for the button', 'team51-donations' ),
 				'buttonAltDefault'      => esc_html__( 'Donate with PayPal button', 'team51-donations' ),
-				'buttonLabelLabel'      => esc_html__( 'Please enter the label for the button.', 'team51-donations' ),
-				'buttonLabelDefault'    => esc_html__( 'PayPal - The safer, easier way to pay online!', 'team51-donations' ),
+				'buttonTitleLabel'      => esc_html__( 'Please enter the label for the button.', 'team51-donations' ),
+				'buttonTitleDefault'    => esc_html__( 'PayPal - The safer, easier way to pay online!', 'team51-donations' ),
 				'buttonImageLabel'      => esc_html__( 'Please enter the URL for the button.', 'team51-donations' ),
 
 				// Paypal Account Details.
@@ -94,9 +94,9 @@ class Block_Registration implements Bootable {
 			'donationAccount'  => array(
 				'type' => 'string',
 			),
-			'buttonLabel'      => array(
+			'buttonTitle'      => array(
 				'type'    => 'string',
-				'default' => $this->get_translatable_string( 'buttonLabelDefault' ),
+				'default' => $this->get_translatable_string( 'buttonTitleDefault' ),
 			),
 			'buttonImage'      => array(
 				'type'    => 'string',
@@ -228,9 +228,9 @@ class Block_Registration implements Bootable {
 		$button_image_url = array_key_exists( 'buttonImage', $attributes )
 			? esc_url( $attributes['buttonImage'] )
 			: $this->get_default_button_url();
-		$button_label     = array_key_exists( 'buttonLabel', $attributes )
-			? esc_html( $attributes['buttonLabel'] )
-			: $this->get_translatable_string( 'buttonLabelDefault' );
+		$button_title     = array_key_exists( 'buttonTitle', $attributes )
+			? esc_html( $attributes['buttonTitle'] )
+			: $this->get_translatable_string( 'buttonTitleDefault' );
 		$button_alt       = array_key_exists( 'buttonAlt', $attributes )
 			? esc_html( $attributes['buttonAlt'] )
 			: $this->get_translatable_string( 'buttonAltDefault' );
