@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    let buttonArgs = parseButtonArgs(paypalDataSet)
-
     // Initialise the button rendering.
     PayPal.Donation.Button(parseButtonArgs(paypalDataSet)).render('#paypal-donate-button-container');
 });
