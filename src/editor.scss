@@ -1,0 +1,38 @@
+.donations-block-wrapper {
+	.components-placeholder__fieldset {
+		flex-direction: column;
+	}
+	.components-placeholder__label {
+		line-height: 1.5;
+	}
+	.components-base-control__label {
+		display: block;
+		font-weight: 600;
+		margin-bottom: 3px;
+	}
+	.components-checkbox-control__label {
+		font-weight: 600;
+		margin-bottom: 3px;
+	}
+	.dashicon {
+		margin-right: 8px;
+	}
+	.accept-recurring-checkbox {
+		margin: 10px 0;
+	}
+}
+
+/* Placeholder icon */
+.donations-default-value .components-text-control__input {
+	width: 65px;
+}
+
+@media (min-width: 600px) {
+	.donations-button-text .components-text-control__input {
+		width: 150px;
+	}
+
+	.donations-recurring-description .components-text-control__input {
+		width: 325px;
+	}
+}
