@@ -30,7 +30,7 @@ class Block_Shortcode implements Bootable {
 	 * @return self
 	 */
 	public function register(): self {
-		add_shortcode( 'paypal_donation_block', array( $this, 'shortcode_renderer' ) );
+		add_shortcode( 'team51_paypal_donation_block', array( $this, 'shortcode_renderer' ) );
 		return $this;
 	}
 

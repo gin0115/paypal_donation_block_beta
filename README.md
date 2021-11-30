@@ -38,7 +38,7 @@ Log into PayPal and access the donations section (under Pay & Get Paid)
 ## You can then use the host_button_id value to either create a block or shortcode (for use in none post/page contents)
 ![](docs/step8-cofigure-block.png)
 
-## To use as a shortcode please enter `[paypal_donation_block hosted_button_id='{host_button_id}']`.
+## To use as a shortcode please enter `[team51_paypal_donation_block hosted_button_id='{host_button_id}']`.
 ![](docs/step8a-as-shortcode.png)
 > See additional Shortcode arguments below.
 
@@ -63,7 +63,7 @@ You can still control the button and its values when adding via a shortcode. The
 * **button_alt**       = The buttons *alt* tag value
 
 ```html
-[paypal_donation_block hosted_button_id='8df3df06dsuhi' button_image_url='https://www.url.tld/button.png' button_title='Donate with us to help them' button_alt='Acme Donation Link Button']
+[team51_paypal_donation_block hosted_button_id='8df3df06dsuhi' button_image_url='https://www.url.tld/button.png' button_title='Donate with us to help them' button_alt='Acme Donation Link Button']
 ```
 
 # Extending the Block
