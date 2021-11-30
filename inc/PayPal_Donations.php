@@ -48,7 +48,7 @@ class PayPal_Donations implements Bootable {
 		// Enqueue the PayPal donations renderer
 		\wp_enqueue_script(
 			'paypal_dontation_renderer',
-			TEAM51_PAYPAL_DONATION_BLOCK_ROOT_URI . '/assets/paypal-donation-renderer.js',
+			apply_filters( 'team51_paypal_donation_block_renderer_src', TEAM51_PAYPAL_DONATION_BLOCK_ROOT_URI . '/assets/paypal-donation-renderer.js' ),
 			array(),
 			Helper::get_plugin_version(),
 			true
