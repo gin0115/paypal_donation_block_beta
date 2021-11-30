@@ -148,4 +148,4 @@ This plugin is built using Composer for handling all autloading for PHP, NPM wit
 The 3 primary PHP classes `Block_Registration`, `PayPal_Donations` and `PayPal_Donations` all implement the `Bootable` interface. This interface ensures that these classes have a valid method called `register()`, this is used to add all needed scripts and styles. If you wish to extend this plugin, and have your custom class loaded and hooks called automatically, please add the class name to the `$classes` array found in  `paypal-donation-block.php`
 
 ## Change Log
-* 0.1.0 - Intitial Build.
+* 0.1.0 - Initial Build.
