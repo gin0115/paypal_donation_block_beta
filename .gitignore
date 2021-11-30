@@ -6,6 +6,7 @@ init.sh
 templates/*
 /vendor/
 /node_modules/
+/build/
 
 # Theme and Plugin handling
 #
