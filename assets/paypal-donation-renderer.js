@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Check we have either the business account or button key.
-    if (paypalDataSet.business === '' && paypalDataSet.hosted_button_id === '') {
-        return;
-    }
+    // // Check we have either the business account or button key.
+    // if (paypalDataSet.business === '' && paypalDataSet.hosted_button_id === '') {
+    //     return;
+    // }
 
     // Initialise the button rendering.
     PayPal.Donation.Button(parseButtonArgs(paypalDataSet)).render('#paypal-donate-button-container');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function parseButtonArgs(paypalDataSet) {
     return {
-        env: 'production',
+        env: paypalDataSet.isSandbox ? 'sandbox' : 'production',
         ...(paypalDataSet.business !== '' && { business: paypalDataSet.business }),
         ...(paypalDataSet.hosted_button_id !== '' && { hosted_button_id: paypalDataSet.hosted_button_id }),
         image: {
@@ -39,17 +39,6 @@ function parseButtonArgs(paypalDataSet) {
             title: paypalDataSet.button_title,
             alt: paypalDataSet.button_alt,
         },
-        onComplete: composerOnCompleteCallBack(paypalDataSet)
-    }
-}
-
-/**
- * Composes the callback used for completed/failed payment
- * @param {object} paypalDataSet The paypal button args
- * @returns function(params)
- */
-function composerOnCompleteCallBack(paypalDataSet) {
-    return function(params) {
-        console.log(paypalDataSet, params);
+        onComplete: (e) => console.log(e)
     }
 }

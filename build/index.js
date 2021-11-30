@@ -75,8 +75,15 @@ function Edit(props) {
     icon: "heart",
     label: blockType.title,
     instructions: blockType.description,
-    className: "donations-block-wrapper"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    className: "paypal-donations-block-wrapper"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.CheckboxControl, {
+    label: paypal_donations_block_settings.i18n.isSandboxMode,
+    className: "paypal-donation-is-sandbox sandbox-mode-toggle",
+    checked: attributes.isSandbox,
+    onChange: val => setAttributes({
+      isSandbox: val ? 1 : 0
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
     label: paypal_donations_block_settings.i18n.donationAccountLabel,
     className: "paypal-donation-donation-key",
     value: attributes.donationAccount,
@@ -91,7 +98,41 @@ function Edit(props) {
       donationButtonID: val
     }),
     required: true
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
+    class: "components-base-control__label"
+  }, paypal_donations_block_settings.i18n.buttonMediaLibraryButtonLabel), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "paypal-donation-button-image"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: onSelectMedia,
+    value: attributes.buttonImageID,
+    allowedTypes: ['image'],
+    render: _ref => {
+      var _attributes$buttonIma;
+
+      let {
+        open
+      } = _ref;
+      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: "button-preview"
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+        src: (_attributes$buttonIma = attributes.buttonImage) !== null && _attributes$buttonIma !== void 0 ? _attributes$buttonIma : paypal_donations_block_settings.defaultButtonUrl,
+        alt: attributes.buttonAlt,
+        title: attributes.buttonTitle
+      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+        class: "media-action-buttons"
+      }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        className: "button",
+        onClick: open,
+        isLink: true,
+        isDestructive: true
+      }, paypal_donations_block_settings.i18n.changeImageButtonLabel), attributes.mediaId != 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+        className: "button",
+        onClick: removeMedia,
+        isLink: true,
+        isDestructive: true
+      }, paypal_donations_block_settings.i18n.removeImageButtonLabel))));
+    }
+  })))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
     label: paypal_donations_block_settings.i18n.buttonAltLabel,
     className: "paypal-donation-button-alt",
     value: attributes.buttonAlt,
@@ -105,32 +146,7 @@ function Edit(props) {
     onChange: val => setAttributes({
       buttonTitle: val
     })
-  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "paypal-donation-button-image"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
-    onSelect: onSelectMedia,
-    value: attributes.buttonImageID,
-    allowedTypes: ['image'],
-    render: _ref => {
-      var _attributes$buttonIma;
-
-      let {
-        open
-      } = _ref;
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-        src: (_attributes$buttonIma = attributes.buttonImage) !== null && _attributes$buttonIma !== void 0 ? _attributes$buttonIma : paypal_donations_block_settings.defaultButtonUrl,
-        alt: attributes.buttonAlt,
-        title: attributes.buttonTitle
-      })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-        className: "paypal-donation-button-image__toggle",
-        onClick: open
-      }, "Choose an image"));
-    }
-  })), attributes.mediaId != 0 && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-    onClick: removeMedia,
-    isLink: true,
-    isDestructive: true
-  }, 'Remove image'))))));
+  })));
 }
 
 /***/ }),

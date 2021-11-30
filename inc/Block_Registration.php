@@ -45,18 +45,26 @@ class Block_Registration implements Bootable {
 			'icon'             => 'heart',
 			'defaultButtonUrl' => esc_url( 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif' ),
 			'i18n'             => array(
-				'blockName'             => esc_html__( 'Donations', 'team51-donations' ),
-				'blockDescription'      => esc_html__( 'A form to collect donations.', 'team51-donations' ),
+				'blockName'                     => esc_html__( 'Paypal Donation', 'team51-paypal-donations' ),
+				'blockDescription'              => esc_html__( 'A form to collect donations.', 'team51-paypal-donations' ),
+				'isSandboxMode'                 => esc_html__( 'Enable sandbox mode', 'team51-paypal-donations' ),
+				'inSandboxMode'                 => esc_html__( 'Sandbox mode endabled.', 'team51-paypal-donations' ),
+
 				// Paypal Button Values
-				'buttonAltLabel'        => esc_html__( 'Please enter the alt tag for the button', 'team51-donations' ),
-				'buttonAltDefault'      => esc_html__( 'Donate with PayPal button', 'team51-donations' ),
-				'buttonTitleLabel'      => esc_html__( 'Please enter the label for the button.', 'team51-donations' ),
-				'buttonTitleDefault'    => esc_html__( 'PayPal - The safer, easier way to pay online!', 'team51-donations' ),
-				'buttonImageLabel'      => esc_html__( 'Please enter the URL for the button.', 'team51-donations' ),
+				'buttonAltLabel'                => esc_html__( 'Please enter the alt tag for the button', 'team51-paypal-donations' ),
+				'buttonAltDefault'              => esc_html__( 'Donate with PayPal button', 'team51-paypal-donations' ),
+				'buttonTitleLabel'              => esc_html__( 'Please enter the label for the button.', 'team51-paypal-donations' ),
+				'buttonTitleDefault'            => esc_html__( 'PayPal - The safer, easier way to pay online!', 'team51-paypal-donations' ),
+				'buttonImageLabel'              => esc_html__( 'Please enter the URL for the button.', 'team51-paypal-donations' ),
 
 				// Paypal Account Details.
-				'donationAccountLabel'  => esc_html__( 'Pleae enter your paypal email or payer ID.', 'team51-donations' ),
-				'donationButtonIDLabel' => esc_html__( 'Please enter your donation buttons unique key.', 'team51-donations' ),
+				'donationAccountLabel'          => esc_html__( 'Please enter your paypal email or payer ID.', 'team51-paypal-donations' ),
+				'donationButtonIDLabel'         => esc_html__( 'Please enter your donation buttons unique key (hosted_button_id).', 'team51-paypal-donations' ),
+
+				// Media Library labels
+				'buttonMediaLibraryButtonLabel' => esc_html__( 'Button Image', 'team51-paypal-donations' ),
+				'changeImageButtonLabel'        => esc_html__( 'Change Image', 'team51-paypal-donations' ),
+				'removeImageButtonLabel'        => esc_html__( 'Reset Image', 'team51-paypal-donations' ),
 			),
 		);
 
@@ -93,6 +101,10 @@ class Block_Registration implements Bootable {
 			),
 			'donationAccount'  => array(
 				'type' => 'string',
+			),
+			'isSandbox'        => array(
+				'type'    => 'boolean',
+				'default' => false,
 			),
 			'buttonTitle'      => array(
 				'type'    => 'string',
@@ -208,6 +220,8 @@ class Block_Registration implements Bootable {
 	/**
 	 * Renders the blocks dynamic view.
 	 *
+	 * THIS SHOULD NOT BE CALLED DIRECTLY, PLEASE USE $this->get_view_callback() to get the callable.
+	 *
 	 * @param array<string, mixed> $attributes
 	 * @return string
 	 */
@@ -224,6 +238,11 @@ class Block_Registration implements Bootable {
 		$donation_account   = array_key_exists( 'donationAccount', $attributes )
 			? esc_html( $attributes['donationAccount'] )
 			: '';
+
+		$is_sandbox      = \array_key_exists( 'isSandbox', $attributes ) && \is_bool( $attributes['isSandbox'] )
+			? $attributes['isSandbox']
+			: false;
+		$in_sandbox_mode = $this->get_translatable_string( 'inSandboxMode' );
 
 		$button_image_url = array_key_exists( 'buttonImage', $attributes )
 			? esc_url( $attributes['buttonImage'] )
@@ -242,11 +261,12 @@ class Block_Registration implements Bootable {
 
 	/**
 	 * Returns the callable used to render the dynamic view.
+	 * This is filtered through the filter to toggle the view method
 	 *
 	 * @filter team51_paypal_donation_block_view
 	 * @return callable
 	 */
-	private function get_view_callback(): callable {
+	public function get_view_callback(): callable {
 		return apply_filters( 'team51_paypal_donation_block_view', array( $this, 'render_donation_block' ) );
 	}
 }

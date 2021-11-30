@@ -2,7 +2,7 @@
  * Import packages
  */
 import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { TextControl, Placeholder, Button } from '@wordpress/components';
+import { TextControl, Placeholder, Button, CheckboxControl } from '@wordpress/components';
 import { getBlockType } from '@wordpress/blocks';
 import { Fragment } from '@wordpress/element';
 
@@ -50,9 +50,16 @@ export default function Edit(props) {
 				icon="heart"
 				label={blockType.title}
 				instructions={blockType.description}
-				className="donations-block-wrapper"
+				className="paypal-donations-block-wrapper"
 			>
 
+
+				<CheckboxControl
+					label={paypal_donations_block_settings.i18n.isSandboxMode}
+					className="paypal-donation-is-sandbox sandbox-mode-toggle"
+					checked={attributes.isSandbox}
+					onChange={(val) => setAttributes({ isSandbox: val ? 1 : 0})}
+				/>
 				<TextControl
 					label={paypal_donations_block_settings.i18n.donationAccountLabel}
 					className="paypal-donation-donation-key"
@@ -67,6 +74,36 @@ export default function Edit(props) {
 					required
 				/>
 
+				<Fragment>
+					<label class="components-base-control__label">{paypal_donations_block_settings.i18n.buttonMediaLibraryButtonLabel}</label>
+					<div className="paypal-donation-button-image">
+						<MediaUploadCheck>
+							<MediaUpload
+								onSelect={onSelectMedia}
+								value={attributes.buttonImageID}
+								allowedTypes={['image']}
+								render={({ open }) => (
+									<Fragment>
+										<div class="button-preview">
+											<img src={attributes.buttonImage ?? paypal_donations_block_settings.defaultButtonUrl} alt={attributes.buttonAlt} title={attributes.buttonTitle} />
+										</div>
+										<div class="media-action-buttons">
+											<Button className='button' onClick={open} isLink isDestructive>
+												{paypal_donations_block_settings.i18n.changeImageButtonLabel}
+											</Button>
+											{attributes.mediaId != 0 &&
+												<MediaUploadCheck>
+													<Button className="button" onClick={removeMedia} isLink isDestructive>{paypal_donations_block_settings.i18n.removeImageButtonLabel}</Button>
+												</MediaUploadCheck>
+											}
+										</div>
+
+									</Fragment>
+								)}
+							/>
+						</MediaUploadCheck>
+					</div>
+				</Fragment>
 				<TextControl
 					label={paypal_donations_block_settings.i18n.buttonAltLabel}
 					className="paypal-donation-button-alt"
@@ -79,33 +116,6 @@ export default function Edit(props) {
 					value={attributes.buttonTitle}
 					onChange={(val) => setAttributes({ buttonTitle: val })}
 				/>
-
-				<Fragment>
-					<div className="paypal-donation-button-image">
-						<MediaUploadCheck>
-							<MediaUpload
-								onSelect={onSelectMedia}
-								value={attributes.buttonImageID}
-								allowedTypes={['image']}
-								render={({ open }) => (
-									<Fragment>
-										<div>
-											<img src={attributes.buttonImage ?? paypal_donations_block_settings.defaultButtonUrl} alt={attributes.buttonAlt} title={attributes.buttonTitle}/>
-										</div>
-										<Button className='paypal-donation-button-image__toggle' onClick={open}>
-											Choose an image
-										</Button>
-									</Fragment>
-								)}
-							/>
-						</MediaUploadCheck>
-						{attributes.mediaId != 0 && 
-							<MediaUploadCheck>
-								<Button onClick={removeMedia} isLink isDestructive>{'Remove image'}</Button>
-							</MediaUploadCheck>
-						}
-					</div>
-				</Fragment>
 			</Placeholder>
 		</div>
 	);

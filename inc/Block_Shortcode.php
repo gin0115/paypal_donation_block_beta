@@ -44,11 +44,11 @@ class Block_Shortcode implements Bootable {
 	public function shortcode_renderer( array $attributes, string $content = '' ): string {
 		// Allowed attribute keys, with mapping to JS values.
 		$allowed = array(
-			'donation_button_id' => 'donationButtonID',
-			'donation_account'   => 'donationAccount',
-			'button_image_url'   => 'buttonImage',
-			'button_title'       => 'buttonTitle',
-			'button_alt'         => 'buttonAlt',
+			'hosted_button_id' => 'donationButtonID',
+			'donation_account' => 'donationAccount',
+			'button_image_url' => 'buttonImage',
+			'button_title'     => 'buttonTitle',
+			'button_alt'       => 'buttonAlt',
 		);
 
 		// Compose the arguments needed for the Block.
@@ -65,8 +65,8 @@ class Block_Shortcode implements Bootable {
 			array()
 		);
 
-		// Render using block renderer.
-		return $this->block_registration->render_donation_block( $arguments );
+		// Get the block renderers view callback, but allow filters to alter this.
+		$view_callable = $this->block_registration->get_view_callback();
+		return $view_callable( $arguments );
 	}
 }
-

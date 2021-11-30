@@ -8,7 +8,7 @@ module.exports = function(grunt) {
             target: {
                 options: {
                     domainPath: '/languages',
-                    exclude: ['.git/*', 'node_modules/*'],
+                    exclude: ['.git/*', 'node_modules/*, vendor/*'],
                     mainFile: 'paypal-donation-block.php',
                     potFilename: 'paypal-donation-block.pot',
                     potHeaders: {
@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 
         checktextdomain: {
             options: {
-                text_domain: 'paypal-donation-block',
+                text_domain: 'team51-paypal-donations',
                 keywords: [
                     '__:1,2d',
                     '_e:1,2d',
@@ -45,6 +45,7 @@ module.exports = function(grunt) {
                 src: [
                     '**/*.php', // Include all files/
                     '!node_modules/**', // Exclude node_modules/
+                    '!vendor/**', // Exclude node_modules/
                 ],
                 expand: true,
             },
