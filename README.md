@@ -4,13 +4,13 @@ This block will need to be constructed before it can be used
 
 * Clone this repo into your plugins or mu-plugins directory.
 * Run `composer install --no-dev && npm install` to install all needed dependencies.  
-* You can then run 'npm run start` to build the production version of the block.  
+* You can then run `npm run start` to build the production version of the block.  
 
 > *If this is built as a plugin, please activate in wp-admin*
 
 # Creating a Donation Button
 
-## First head over to your paypal site and create a button
+## First head over to the PayPal site and create a donation button
 Log into PayPal and access the donations section (under Pay & Get Paid)
 ![](docs/step1-open-donations-in-paypal-account.png)
 
@@ -115,7 +115,7 @@ This allows for the customisation of how the button is rendered. By default the 
 
 ```php
 add_filter('team51_paypal_donation_block_renderer_src', function(callable $view_callback): callable{
-    /** @var callable(array $args): void */
+    /** @var callable(array $args): string */
     return 'some_custom_callback';
 });
 ```
@@ -136,7 +136,7 @@ $args = [
 This allows for supplying an alternative JS file used to render the block. For more details on how the Button should be rendered please see the PayPal Donations SDK documentation.
 
 ```php
-add_filter('team51_paypal_donation_block_renderer_src', function(string $view_callback): string{
+add_filter('team51_paypal_donation_block_renderer_src', function(string $src): string{
     return 'https://some.url.tld/assets/script.js';
 });
 ```
